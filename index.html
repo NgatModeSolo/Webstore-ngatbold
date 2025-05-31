@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGATBOLD - Toko Layanan Digital</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1rem 0;
+        }
+        
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+        }
+        
+        nav ul li a:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .products {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: var(--success);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .product-desc {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #5649c0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .payment-methods {
+            background-color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .payment-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .payment-method {
+            background-color: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            width: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .payment-method img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>NGATBOLD</h1>
+            <p class="tagline">Toko Layanan Digital Terpercaya</p>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#products">Layanan</a></li>
+            <li><a href="#payment">Pembayaran</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+    
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Layanan Kami</h2>
+            
+            <div class="product-grid">
+                <!-- Jasa Pembuatan Logo -->
+                <div class="product-card">
+                    <div class="product-image">🎨</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Jasa Pembuatan Logo</h3>
+                        <p class="product-price">Rp 5.000 - Rp 50.000</p>
+                        <p class="product-desc">Desain logo profesional untuk bisnis, brand, atau kebutuhan pribadi Anda dengan harga terjangkau.</p>
+                        <a href="#" class="btn btn-block">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Jasa Pembuatan Website -->
+                <div class="product-card">
+                    <div class="product-image">💻</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Jasa Pembuatan Website</h3>
+                        <p class="product-price">Rp 10.000 - Rp 20.000</p>
+                        <p class="product-desc">Website payment/store siap pakai untuk memulai bisnis online Anda dengan cepat dan mudah.</p>
+                        <a href="#" class="btn btn-block">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Jasa Pembuatan Script Bug -->
+                <div class="product-card">
+                    <div class="product-image">🐛</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Jasa Pembuatan Script Bug</h3>
+                        <p class="product-price">Rp 80.000 - Rp 300.000</p>
+                        <p class="product-desc">Script bug custom sesuai kebutuhan Anda dengan kualitas premium dan garansi.</p>
+                        <a href="#" class="btn btn-block">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Script Bug -->
+                <div class="product-card">
+                    <div class="product-image">📜</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Script Bug</h3>
+                        <p class="product-price">Rp 10.000 - Rp 40.000</p>
+                        <p class="product-desc">Koleksi script bug siap pakai untuk berbagai kebutuhan dengan harga terjangkau.</p>
+                        <a href="#" class="btn btn-block">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Function Script Bug -->
+                <div class="product-card">
+                    <div class="product-image">⚙️</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Function Script Bug</h3>
+                        <p class="product-price">Rp 20.000 - Rp 80.000</p>
+                        <p class="product-desc">Fungsi-fungsi script bug khusus untuk kebutuhan spesifik Anda.</p>
+                        <a href="#" class="btn btn-block">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Base Script Bot WA -->
+                <div class="product-card">
+                    <div class="product-image">🤖</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Base Script Bot WA</h3>
+                        <p class="product-price">Rp 20.000</p>
+                        <p class="product-desc">Dasar script bot WhatsApp untuk memulai pengembangan bot Anda sendiri.</p>
+                        <a href="#" class="btn btn-block">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Murbug -->
+                <div class="product-card">
+                    <div class="product-image">🔍</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Murbug</h3>
+                        <p class="product-price">Rp 10.000 - Rp 20.000</p>
+                        <p class="product-desc">Layanan khusus untuk kebutuhan tertentu dengan harga murah.</p>
+                        <a href="#" class="btn btn-block">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- Jasbug -->
+                <div class="product-card">
+                    <div class="product-image">🛠️</div>
+                    <div class="product-content">
+                        <h3 class="product-title">Jasbug</h3>
+                        <p class="product-price">Rp 5.000</p>
+                        <p class="product-desc">Layanan perbaikan cepat untuk masalah tertentu.</p>
+                        <a href="#" class="btn btn-block">Pesan Sekarang</a>
+                    </div>
+                </div>
+                
+                <!-- APK Sadap HP -->
+                <div class="product-card">
+                    <div class="product-image">📱</div>
+                    <div class="product-content">
+                        <h3 class="product-title">APK Sadap HP</h3>
+                        <p class="product-price">Rp 25.000</p>
+                        <p class="product-desc">Aplikasi khusus untuk kebutuhan tertentu.</p>
+                        <a href="#" class="btn btn-block">Pesan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="payment-methods" id="payment">
+        <div class="container">
+            <h2 class="section-title">Metode Pembayaran</h2>
+            
+            <div class="payment-grid">
+                <div class="payment-method">
+                    <h3>DANA</h3>
+                    <p>Nomor: 083897578202</p>
+                    <p>Atas Nama: [Nama Pemilik]</p>
+                </div>
+                
+                <div class="payment-method">
+                    <h3>QRIS</h3>
+                    <img src="https://img1.pixhost.to/images/6056/604597354_rizzhosting.jpg" alt="QRIS NGATBOLD">
+                    <p>Scan untuk pembayaran cepat</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <div class="container">
+            <h3>NGATBOLD</h3>
+            <p>Toko Layanan Digital Terpercaya</p>
+            <p>Hubungi kami melalui WhatsApp: 083897578202</p>
+            <p>© 2023 NGATBOLD. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <a href="https://wa.me/6283897578202" class="whatsapp-float" target="_blank">💬</a>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Sticky navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
